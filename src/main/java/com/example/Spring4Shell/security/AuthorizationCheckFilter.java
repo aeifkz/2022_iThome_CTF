@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.example.Spring4Shell.Authorization;
-
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 
@@ -52,7 +50,9 @@ public class AuthorizationCheckFilter extends OncePerRequestFilter {
 				filterChain.doFilter(request, response);
 			}
 			else {
-				request.getSession().invalidate();
+				if(request.getSession()!=null) {
+					request.getSession().invalidate();
+				}
 				response.sendRedirect("/Spring4Shell/login/");
 			}
 			
