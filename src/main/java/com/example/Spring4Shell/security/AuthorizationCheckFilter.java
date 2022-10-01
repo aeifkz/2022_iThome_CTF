@@ -27,7 +27,7 @@ public class AuthorizationCheckFilter extends OncePerRequestFilter {
 			Cookie[] cookies = request.getCookies();
 			if (cookies != null) {				
 				for(int i = 0; i < cookies.length; i++) {
-					System.out.println("cookies[i].getName()=" + cookies[i].getName());
+					//System.out.println("cookies[i].getName()=" + cookies[i].getName());
 					if (cookies[i].getName().equals("jwt-token")) {
 						jwt = cookies[i].getValue();
 						break;

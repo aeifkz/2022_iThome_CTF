@@ -18,7 +18,7 @@ public class MainController {
 	@RequestMapping({"/login/*"})
 	public String login(HttpServletResponse response,Authentication authentication) {
 		
-		System.out.println("call login");
+		//System.out.println("call login");
 		String role = "guest";
 				
 		if(authentication!=null &&"[ROLE_ADMIN]".equals(authentication.getAuthorities().toString())) {              
