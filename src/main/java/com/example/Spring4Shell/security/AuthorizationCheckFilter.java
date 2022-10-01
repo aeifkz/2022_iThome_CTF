@@ -19,6 +19,8 @@ public class AuthorizationCheckFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
+		System.out.println("call " + request.getServletPath());
+		
 		if (!request.getServletPath().startsWith("/login")) {
 			
 			String role = null;			
@@ -26,8 +28,7 @@ public class AuthorizationCheckFilter extends OncePerRequestFilter {
 			
 			Cookie[] cookies = request.getCookies();
 			if (cookies != null) {				
-				for(int i = 0; i < cookies.length; i++) {
-					//System.out.println("cookies[i].getName()=" + cookies[i].getName());
+				for(int i = 0; i < cookies.length; i++) {					
 					if (cookies[i].getName().equals("jwt-token")) {
 						jwt = cookies[i].getValue();
 						break;
@@ -39,10 +40,12 @@ public class AuthorizationCheckFilter extends OncePerRequestFilter {
 			if(jwt!=null) {				
 				try {
 					JwtParser jwtVerifier = Jwts.parserBuilder().setSigningKey(Authorization.keyPair.getPublic()).build();
-					role = jwtVerifier.parseClaimsJws(jwt).getBody().get("role", String.class);					
+					role = jwtVerifier.parseClaimsJws(jwt).getBody().get("role", String.class);
+					System.out.println("validate jwt-token with role:" + role);
 				}
 				catch(Exception e) {
 					e.printStackTrace();
+					System.out.println("validate jwt-token fail");
 				}
 			}
 			
@@ -50,6 +53,7 @@ public class AuthorizationCheckFilter extends OncePerRequestFilter {
 				filterChain.doFilter(request, response);
 			}
 			else {
+				System.out.println("clear session and redirect to login");
 				if(request.getSession()!=null) {
 					request.getSession().invalidate();
 				}

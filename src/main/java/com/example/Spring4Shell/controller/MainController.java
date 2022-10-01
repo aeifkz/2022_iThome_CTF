@@ -17,8 +17,7 @@ public class MainController {
 	
 	@RequestMapping({"/login/*"})
 	public String login(HttpServletResponse response,Authentication authentication) {
-		
-		//System.out.println("call login");
+				
 		String role = "guest";
 				
 		if(authentication!=null &&"[ROLE_ADMIN]".equals(authentication.getAuthorities().toString())) {              
@@ -32,11 +31,15 @@ public class MainController {
 		.signWith(			
 			SignatureAlgorithm.ES256,
 			Authorization.keyPair.getPrivate()
-		).compact();	
+		).compact();
+		
+		System.out.println("create jwt-token and set cookie: " + jwt_token );
 		
 		Cookie cookie = new Cookie("jwt-token",jwt_token);		
 		cookie.setPath("/Spring4Shell");
 		response.addCookie(cookie);
+		
+		System.out.println("login with role:" + role);
 		
 		if(role.equals("admin")) {
 			return "<html><body>" +
@@ -53,7 +56,10 @@ public class MainController {
 	}
 
 	@RequestMapping({"/user"})
-	public String query_user(User user) {		
+	public String query_user(User user) {	
+		
+		System.out.println("query user with name:" + user.getName());
+		
 		return "<html><body>" +
     			"Welcome admin <br/>" +
     			"My name is " + user.getName() + "<br/>" +            			
