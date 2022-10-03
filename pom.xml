@@ -13,7 +13,7 @@
 	<artifactId>Spring4Shell</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Spring4Shell</name>
+	<name>iThome_CTF</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.9</java.version>
