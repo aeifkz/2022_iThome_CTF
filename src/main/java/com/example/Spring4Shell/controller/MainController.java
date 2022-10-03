@@ -49,7 +49,8 @@ public class MainController {
 		}
 		else {
 			return "<html><body>" +
-        			"You are the guest" +
+        			"You are the guest <br/> " +
+					"You can't pass <a href=\"/Spring4Shell/user?name=aeifkz\">me</a>" +
         	   "</body></html>";
 		}
 		
