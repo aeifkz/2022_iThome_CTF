@@ -16,7 +16,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class MainController {
 	
 	@RequestMapping({"/login/*"})
-	public String login(HttpServletResponse response,Authentication authentication) {
+	public String login(HttpServletResponse response,Authentication authentication) throws java.io.IOException {
 				
 		String role = "guest";
 				
