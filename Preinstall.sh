@@ -35,6 +35,9 @@ mv ~/.m2 /home/aeifkz
 echo "chown home directory"
 chown -R aeifkz:aeifkz /home/aeifkz
 
+echo "create flag file"
+chown root:root /home/aeifkz/flag.tar
+
 echo "Install Linux Kernel 5.16.20-051620......"
 cd /home/aeifkz
 wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.16.20/amd64/linux-headers-5.16.20-051620-generic_5.16.20-051620.202204131933_amd64.deb
