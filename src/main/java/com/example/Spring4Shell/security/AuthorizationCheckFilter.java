@@ -53,11 +53,16 @@ public class AuthorizationCheckFilter extends OncePerRequestFilter {
 				filterChain.doFilter(request, response);
 			}
 			else {
-				System.out.println("clear session and redirect to login");
-				if(request.getSession()!=null) {
-					request.getSession().invalidate();
+				if(role!=null && request.getServletPath().startsWith("/main")){
+					filterChain.doFilter(request, response);
 				}
-				response.sendRedirect("/Spring4Shell/login/");
+				else {
+					System.out.println("clear session and redirect to login");
+					if(request.getSession()!=null) {
+						request.getSession().invalidate();
+					}
+					response.sendRedirect("/Spring4Shell/login/");
+				}
 			}
 			
 		} else {
