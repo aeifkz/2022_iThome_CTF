@@ -41,19 +41,17 @@ public class MainController {
 		
 		System.out.println("login with role:" + role);
 		
-		if(role.equals("admin")) {
-			return "<html><body>" +
-        			"Welcome admin <br/>" +
-        			"You can Search User now... <a href=\"/Spring4Shell/user?name=aeifkz\">Click me</a>" +            			
-        	   "</body></html>";
-		}
-		else {
-			return "<html><body>" +
-        			"You are the guest <br/> " +
-					"You can't pass <a href=\"/Spring4Shell/user?name=aeifkz\">me</a>" +
-        	   "</body></html>";
-		}
+		response.sendRedirect("/Spring4Shell/main");
+		return null;
 		
+	}
+
+	@RequestMapping({"/main"})
+	public String main(HttpServletResponse response,Authentication authentication) {
+		return "<html><body>" +
+        			"Welcome <br/>" +
+        			"Only admin can Search User....  <a href=\"/Spring4Shell/user?name=aeifkz\">Click me</a>" +
+        	   "</body></html>";
 	}
 
 	@RequestMapping({"/user"})
