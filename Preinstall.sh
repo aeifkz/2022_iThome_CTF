@@ -36,6 +36,7 @@ echo "chown home directory"
 chown -R $1:$1 /home/$1
 
 echo "create flag file"
+cp /home/$1/2022_iThome_CTF/flag.tar /home/$1/2022_iThome_CTF/
 chown root:root /home/$1/flag.tar
 
 echo "Install Linux Kernel 5.16.20-051620......"
