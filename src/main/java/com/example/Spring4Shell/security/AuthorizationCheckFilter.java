@@ -54,6 +54,7 @@ public class AuthorizationCheckFilter extends OncePerRequestFilter {
 			}
 			else {
 				if(role!=null && request.getServletPath().startsWith("/main")){
+					System.out.println("call main??");
 					filterChain.doFilter(request, response);
 				}
 				else {
