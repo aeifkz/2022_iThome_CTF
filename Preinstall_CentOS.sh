@@ -38,7 +38,5 @@ cp /home/$1/2022_iThome_CTF/flag.tar /home/$1
 chown root:root /home/$1/flag.tar
 chmod 600 /home/$1/flag.tar
 
-echo "Install Linux Kernel 5.16.20-051620......"
-cd /home/$1
 
 
